@@ -89,14 +89,14 @@ end
 #
 def num_points_scored(name)
   game = game_hash
-  player = search_for_player(game, name)
+  player = search_for_player_by_name(game, name)
   player ? player[:points] : nil
 end
 
 #
 def shoe_size(name)
   game = game_hash
-  player = search_for_player(game, name)
+  player = search_for_player_by_name(game, name)
   player ? player[:shoe] : nil
 end
 
