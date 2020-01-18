@@ -175,8 +175,6 @@ def most_points_scored
 end
 
 #
-# hmm... I'd like to use the "highest stat" to do this, if possible
-#
 def player_with_longest_name
   
 end
