@@ -168,9 +168,10 @@ end
 #
 def most_points_scored
   game = game_hash
-  get_player_by_highest_stat(game) do |current_highest, next_player|
+  player = get_player_by_highest_stat(game) do |current_highest, next_player|
     next_player[:points] > current_highest[:points] ? next_player : current_highest
   end
+  player[:player_name]
 end
 
 #
