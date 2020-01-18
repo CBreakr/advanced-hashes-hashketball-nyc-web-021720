@@ -56,14 +56,14 @@ end
 #
 
 #
-def get_all_players(game)
-  [game[:home][:players], game[:away][:players]].flatten
-end
-
-#
 def search_for_player(game, name)
   all_players = get_all_players(game)
   player = search_array_for_player(all_players, name)
+end
+
+#
+def get_all_players(game)
+  [game[:home][:players], game[:away][:players]].flatten
 end
 
 #
