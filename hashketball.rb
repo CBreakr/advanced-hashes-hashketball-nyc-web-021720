@@ -149,6 +149,8 @@ end
 
 #
 def get_player_by_highest_stat(game)
+  all_players = get_all_players
+  base = all_players[0]
   
 end
 
