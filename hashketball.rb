@@ -129,7 +129,7 @@ end
 #
 def player_stats(name)
   game = game_hash
-  player = search_for_player(game, name)
+  player = search_for_player_by_name(game, name)
   if player then
     return {
       :number => player[:number],
