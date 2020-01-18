@@ -195,7 +195,7 @@ end
 #
 def long_name_steals_a_ton?
   longest = player_with_longest_name
-  most_steals = get_player_by_highest_stat
+  most_steals = player_with_most_steals
   return longest == most_steals
 end
 
