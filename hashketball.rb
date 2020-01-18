@@ -186,7 +186,10 @@ end
 #
 def player_with_most_steals
   game = game_hash
-  player 
+  player = get_player_by_highest_stat(game) do |current_highest, next_player|
+    next_player[:steals] > current_highest[:steals] ? next_player : current_highest
+  end
+  player[:player_name]
 end
 
 #
