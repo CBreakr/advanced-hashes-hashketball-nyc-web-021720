@@ -62,16 +62,13 @@ end
 
 #
 def search_for_player(game, name)
-  player = search_team_for_player(game[:home], name)
-  if !player then
-    player = search_team_for_player(game[:away], name)
-  end
-  player
+  
+  player = search_array_for_player(game[:home], name)
 end
 
 #
-def search_team_for_player(team, name)
-  team[:players].find do |player|
+def search_array_for_player(players, name)
+  players.find do |player|
     player[:player_name] == name
   end
 end
