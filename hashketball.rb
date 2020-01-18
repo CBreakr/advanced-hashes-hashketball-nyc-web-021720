@@ -197,5 +197,7 @@ end
 
 #
 def get_points_for_team(team)
-  
+  team[:players].reduce(0) do |total, player|
+    total += player[:points]
+  end
 end
