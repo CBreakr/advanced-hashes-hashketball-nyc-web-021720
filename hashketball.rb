@@ -1,11 +1,183 @@
-# Write your code here!
+require "yaml"
 
+#
+def game_hash
+  game = {
+    :home => {},
+    :away => {}
+  }
 
+  create_team_hash(game, :home, "Brooklyn Nets", ["Black", "White"], "./data/home_team_players.yml")
+  
+  create_team_hash(game, :away, "Charlotte Hornets", ["Turquoise", "Purple"], "./data/away_team_players.yml")
+  
+  return game
+end
 
+#
+def create_team_hash(game, key, team_name, colors, player_file)
+  raw_players = load_player_data(player_file)
+  players = convert_raw_player_data(raw_players)
+  
+  game[key] = {
+    :team_name => team_name,
+    :colors => colors,
+    :players => players
+  }
+end
 
+#
+# I did the simplest copy of the player data possible to
+# a set of files, to be read in and then converted
+# to a more usable format
+#
+def load_player_data(path)
+  YAML.load_file(path)
+end
 
+#
+def convert_raw_player_data(raw_data)
+  # we have a set of arrays with the same length
+  players = []
+  # just need to match up indexes of the inner arrays
+  raw_data[:player_name].each_with_index do |name, index|
+    player = {}
+    raw_data.each_key do |key|
+      player[key] = raw_data[key][index]
+    end
+    players << player
+  end
+  players
+end
 
+####################################################
+#
+# "insight" methods
+#
 
+#
+def search_for_player(game, name)
+  player = search_team_for_player(game[:home], name)
+  if !player then
+    player = search_team_for_player(game[:away], name)
+  end
+  player
+end
 
+#
+def search_team_for_player(team, name)
+  team[:players].find do |player|
+    player[:player_name] == name
+  end
+end
 
+#
+def search_for_team_by_name(game, team_name)
+  if game[:home][:team_name] == team_name then
+    return game[:home]
+  elsif game[:away][:team_name] == team_name then
+    return game[:away]
+  end
+  
+  nil
+end
 
+#############################
+
+#
+def num_points_scored(name)
+  game = game_hash
+  player = search_for_player(game, name)
+  player ? player[:points] : nil
+end
+
+#
+def shoe_size(name)
+  game = game_hash
+  player = search_for_player(game, name)
+  player ? player[:shoe] : nil
+end
+
+#
+def team_colors(team_name)
+  game = game_hash
+  team = search_for_team_by_name(game, team_name)
+  team ? team[:colors] : nil
+end
+
+#
+def team_names
+  game = game_hash
+  teams = [game[:home][:team_name], game[:away][:team_name]]
+end
+
+#
+def player_numbers(team_name)
+  game = game_hash
+  team = search_for_team_by_name(game, team_name)
+  if team then
+    return team[:players].map do |player|
+      player[:number]
+    end
+  end
+
+  nil
+end
+
+#
+def player_stats(name)
+  game = game_hash
+  player = search_for_player(game, name)
+  if player then
+    return {
+      :number => player[:number],
+        :shoe => player[:shoe],
+        :points => player[:points],
+        :rebounds => player[:rebounds],
+        :assists => player[:assists],
+        :steals => player[:steals],
+        :blocks => player[:blocks],
+        :slam_dunks => player[:slam_dunks]
+    }
+  end
+  
+  nil
+end
+
+#
+def get_player_by_highest_stat(game, stat)
+  
+end
+
+#
+def big_shoe_rebounds
+  game = game_hash
+  player = get_player_by_highest_stat(game, :shoe)
+  player ? player[:rebounds] : nil
+end
+
+#
+def most_points_scored
+  game = game_hash
+  player = get_player_by_highest_stat(game, :points)
+end
+
+#
+def winning_team 
+  
+end
+
+#
+# hmm... I'd like to use the "highest stat" to do this, if possible
+#
+def player_with_longest_name
+  
+end
+
+#
+def long_name_steals_a_ton?
+  game = game_hash
+  longest = player_with_longest_name
+  most_steals = get_player_by_highest_stat(game, :steals)
+  return longest[:player_name] == most_steals[:player_name]
+end
