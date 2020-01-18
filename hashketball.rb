@@ -151,16 +151,16 @@ end
 def get_player_by_highest_stat(game)
   all_players = get_all_players(game)
   base = all_players[0]
-  all_players.reduce(base) do |current_highest, player|
-    yield(current_highest, player)
+  all_players.reduce(base) do |current_highest, next_player|
+    yield(current_highest, next_player)
   end
 end
 
 #
 def big_shoe_rebounds
   game = game_hash
-  player = get_player_by_highest_stat(game) do |current_highest, player|
-    player[:shoe] > current_highest[:shoe] ? player : current_highest
+  player = get_player_by_highest_stat(game) do |current_highest, next_player|
+    next_player[:shoe] > current_highest[:shoe] ? next_player : current_highest
   end
   player ? player[:rebounds] : nil
 end
