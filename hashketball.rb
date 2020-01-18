@@ -184,5 +184,12 @@ end
 
 #
 def winning_team 
+  game = game_hash
+  home_points = get_points_for_team(game[:home])
+  away_points = get_points_for_team(game[:away])
+end
+
+#
+def get_points_for_team(team)
   
 end
