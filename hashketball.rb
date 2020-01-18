@@ -176,7 +176,10 @@ end
 
 #
 def player_with_longest_name
-  
+  game = game_hash
+  player = get_player_by_highest_stat(game) do |current_highest, next_player|
+    next_player[:player_name].length > current_highest[:player_name].length ? next_player : current_highest
+  end
 end
 
 #
