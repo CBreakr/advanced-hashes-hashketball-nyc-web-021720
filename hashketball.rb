@@ -67,6 +67,9 @@ def search_array_for_player(players, name)
   end
 end
 
+
+#############################
+
 #
 def search_for_team_by_name(game, team_name)
   if game[:home][:team_name] == team_name then
@@ -77,8 +80,6 @@ def search_for_team_by_name(game, team_name)
   
   nil
 end
-
-#############################
 
 #
 def search_for_player_by_name(game, name)
