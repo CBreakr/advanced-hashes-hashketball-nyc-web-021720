@@ -149,7 +149,7 @@ end
 
 #
 def get_player_by_highest_stat(game)
-  all_players = get_all_players
+  all_players = get_all_players(game)
   base = all_players[0]
   all_players.reduce(base) do |player|
     yield(base, player)
