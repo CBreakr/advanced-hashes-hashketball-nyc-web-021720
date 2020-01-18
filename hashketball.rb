@@ -159,8 +159,8 @@ end
 #
 def big_shoe_rebounds
   game = game_hash
-  player = get_player_by_highest_stat(game) do |current_player, next_player|
-    next_player[:shoe] > current_player[:shoe] ? next_player : current_player
+  player = get_player_by_highest_stat(game) do |current_highest, player|
+    player[:shoe] > current_highest[:shoe] ? player : current_highest
   end
   player ? player[:rebounds] : nil
 end
