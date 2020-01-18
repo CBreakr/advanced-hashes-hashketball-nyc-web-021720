@@ -168,11 +168,6 @@ def most_points_scored
 end
 
 #
-def winning_team 
-  
-end
-
-#
 # hmm... I'd like to use the "highest stat" to do this, if possible
 #
 def player_with_longest_name
@@ -185,4 +180,9 @@ def long_name_steals_a_ton?
   longest = player_with_longest_name
   most_steals = get_player_by_highest_stat(game, :steals)
   return longest[:player_name] == most_steals[:player_name]
+end
+
+#
+def winning_team 
+  
 end
