@@ -148,7 +148,7 @@ def player_stats(name)
 end
 
 #
-def get_player_by_highest_stat(game, stat)
+def get_player_by_highest_stat(game)
   
 end
 
