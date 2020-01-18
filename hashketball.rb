@@ -185,14 +185,15 @@ end
 
 #
 def player_with_most_steals
-  
+  game = game_hash
+  player 
 end
 
 #
 def long_name_steals_a_ton?
   longest = player_with_longest_name
   most_steals = get_player_by_highest_stat
-  return longest[:player_name] == most_steals[:player_name]
+  return longest == most_steals
 end
 
 ##########################
