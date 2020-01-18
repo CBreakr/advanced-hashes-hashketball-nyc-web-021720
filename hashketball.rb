@@ -62,8 +62,8 @@ end
 
 #
 def search_for_player(game, name)
-  
-  player = search_array_for_player(game[:home], name)
+  all_players = get_all_players
+  player = search_array_for_player(all_players, name)
 end
 
 #
