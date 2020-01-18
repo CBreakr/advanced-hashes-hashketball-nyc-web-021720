@@ -56,7 +56,7 @@ end
 #
 
 #
-def search_for_player(game, name)
+def search_for_player_by_name(game, name)
   all_players = get_all_players(game)
   player = search_array_for_player(all_players, name)
 end
