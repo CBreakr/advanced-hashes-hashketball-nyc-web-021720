@@ -150,12 +150,9 @@ end
 #
 def get_player_by_highest_stat(game)
   all_players = get_all_players(game)
-  puts "all players"
-  pp all_players
   base = all_players[0]
-  all_players.reduce(base) do |current, player|
-    puts "#{base} ;;;; #{player}"
-    base = yield(current, player)
+  all_players.reduce(base) do |current_player, next_player|
+    yield(current_highest, player)
   end
 end
 
@@ -163,8 +160,6 @@ end
 def big_shoe_rebounds
   game = game_hash
   player = get_player_by_highest_stat(game) do |current_player, next_player|
-#    puts "current: #{current_player}"
-#    puts "next: #{next_player}"
     next_player[:shoe] > current_player[:shoe] ? next_player : current_player
   end
   player ? player[:rebounds] : nil
