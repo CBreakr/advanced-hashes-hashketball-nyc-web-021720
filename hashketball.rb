@@ -56,6 +56,11 @@ end
 #
 
 #
+def get_all_players(game)
+  [game[:home][:players], game[:away][:players]].flatten
+end
+
+#
 def search_for_player(game, name)
   player = search_team_for_player(game[:home], name)
   if !player then
