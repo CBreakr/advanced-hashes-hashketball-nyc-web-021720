@@ -151,7 +151,7 @@ end
 def get_player_by_highest_stat(game)
   all_players = get_all_players(game)
   base = all_players[0]
-  all_players.reduce(base) do |current_player, next_player|
+  all_players.reduce(base) do |current_highest, player|
     yield(current_highest, player)
   end
 end
